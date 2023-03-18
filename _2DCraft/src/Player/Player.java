@@ -9,7 +9,7 @@ public class Player {
     public Player(String name, int health, Inventory inventory) {
         this.name = name;
         this.health = health;
-        this.inventory = inventory;
+        this.inventory = new Inventory(inventory.getSize());
     }
 
     public Inventory getInventory() {

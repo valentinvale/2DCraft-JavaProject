@@ -8,4 +8,12 @@ public abstract class Item {
         this.id = id;
         this.name = name;
     }
+
+    public double getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

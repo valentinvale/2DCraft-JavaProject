@@ -8,7 +8,16 @@ public class Inventory {
     public int size;
 
     public Inventory(int size) {
+        this.size = size;
         items = new Item[size];
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Item[] getItems() {
+        return items;
     }
 
     public void addItem(Item item) {
@@ -26,4 +35,13 @@ public class Inventory {
         }
 
     }
+
+    public void showInventory(){
+        for (int i = 0; i < items.length; i++) {
+            if(items[i] != null){
+                System.out.println(items[i].getName());
+            }
+        }
+    }
+
 }
