@@ -9,8 +9,9 @@ public class Leaves extends Block{
         @Override
         public void dropItem(Player.Player player) {
             double random = Math.random();
+            String name = this.getName().substring(0, this.getName().indexOf(" "));
             if(random < 0.5){
-                player.getInventory().addItem(new Items.Sapling(0, this.getName() + " Sapling"));
+                player.getInventory().addItem(new Items.Sapling(0, name + " Sapling"));
             }
         }
 
