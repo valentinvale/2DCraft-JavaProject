@@ -52,11 +52,12 @@ public class Inventory {
 
     public void removeItem(Item item){
         for (int i = 0; i < items.length; i++) {
-            if(items[i] != null && Objects.equals(items[i].getName(), item.getName())){
-                for(int j = i; j < items.length - 1; j++){
-                    items[j] = items[j + 1];
+            if(items[i] != null && items[i].getName().equals(item.getName())){
+                for (int j = i + 1; j < items.length; j++) {
+                    items[j - 1] = items[j];
                 }
                 items[items.length - 1] = null;
+                break;
             }
         }
     }
@@ -107,21 +108,21 @@ public class Inventory {
 
     public void addItemToCraftingPanel(Item item, int panel){
         switch (panel) {
-            case 1 -> {this.craftingPanel1 = item; calculateCraftingResult();}
-            case 2 -> {this.craftingPanel2 = item; calculateCraftingResult();}
-            case 3 -> {this.craftingPanel3 = item; calculateCraftingResult();}
-            case 4 -> {this.craftingPanel4 = item; calculateCraftingResult();}
+            case 1 -> {this.craftingPanel1 = item; this.calculateCraftingResult();}
+            case 2 -> {this.craftingPanel2 = item; this.calculateCraftingResult();}
+            case 3 -> {this.craftingPanel3 = item; this.calculateCraftingResult();}
+            case 4 -> {this.craftingPanel4 = item; this.calculateCraftingResult();}
         }
-        removeItem(item);
+        this.removeItem(item);
 
     }
 
     public void removeItemFromCraftingPanel(int panel){
         switch (panel) {
-            case 1 -> {addItem(this.craftingPanel1); this.craftingPanel1 = null; calculateCraftingResult();}
-            case 2 -> {addItem(this.craftingPanel2); this.craftingPanel2 = null; calculateCraftingResult();}
-            case 3 -> {addItem(this.craftingPanel3); this.craftingPanel3 = null; calculateCraftingResult();}
-            case 4 -> {addItem(this.craftingPanel4); this.craftingPanel4 = null; calculateCraftingResult();}
+            case 1 -> {this.addItem(this.craftingPanel1); this.craftingPanel1 = null; this.calculateCraftingResult();}
+            case 2 -> {this.addItem(this.craftingPanel2); this.craftingPanel2 = null; this.calculateCraftingResult();}
+            case 3 -> {this.addItem(this.craftingPanel3); this.craftingPanel3 = null; this.calculateCraftingResult();}
+            case 4 -> {this.addItem(this.craftingPanel4); this.craftingPanel4 = null; this.calculateCraftingResult();}
         }
     }
 

@@ -23,9 +23,12 @@ public class Main {
 //        player.getInventory().addItemToCraftingPanel(new Items.Log(1, "Oak Log"), 3);
 //        player.getInventory().addItemToCraftingPanel(new Items.Log(1, "Oak Log"), 4);
         player.getInventory().showInventory();
-//        player.getInventory().craftItem();
+//
         player.getInventory().removeItemFromCraftingPanel(1);
 
+        player.getInventory().showInventory();
+
+        player.getInventory().craftItem();
         player.getInventory().showInventory();
 
     }
