@@ -13,8 +13,20 @@ public class Main {
         System.out.println(player.getInventory().getItems().length);
         OakLeavesBlock.dropItem(player);
         OakLogBlock.dropItem(player);
+        OakLogBlock.dropItem(player);
+        OakLogBlock.dropItem(player);
+        OakLogBlock.dropItem(player);
         player.getInventory().showInventory();
 
+        player.getInventory().addItemToCraftingPanel(new Items.Log(1, "Oak Log"), 1);
+        player.getInventory().addItemToCraftingPanel(new Items.Log(1, "Oak Log"), 2);
+//        player.getInventory().addItemToCraftingPanel(new Items.Log(1, "Oak Log"), 3);
+//        player.getInventory().addItemToCraftingPanel(new Items.Log(1, "Oak Log"), 4);
+        player.getInventory().showInventory();
+//        player.getInventory().craftItem();
+        player.getInventory().removeItemFromCraftingPanel(1);
+
+        player.getInventory().showInventory();
 
     }
 }
