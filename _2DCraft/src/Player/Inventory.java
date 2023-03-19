@@ -155,6 +155,21 @@ public class Inventory {
             }
             this.craftingResultAmount = 4;
         }
+        // reteta 2: 2 planks -> 4 stick
+        else if((this.craftingPanel1 != null && this.craftingPanel1.getName().endsWith("Planks") && this.craftingPanel2 == null && this.craftingPanel3 != null && this.craftingPanel3.getName().endsWith("Planks") && this.craftingPanel4 == null) ||
+                (this.craftingPanel1 == null && this.craftingPanel2 != null && this.craftingPanel2.getName().endsWith("Planks") && this.craftingPanel3 == null && this.craftingPanel4 != null && this.craftingPanel4.getName().endsWith("Planks")))
+        {
+            this.craftingResult = new Items.Stick(3, "Stick");
+            this.craftingResultAmount = 4;
+            ok = true;
+        }
+        // reteta 3: 4 planks -> 1 Crafting Table
+        else if((this.craftingPanel1 != null && this.craftingPanel1.getName().endsWith("Planks") && this.craftingPanel2 != null && this.craftingPanel2.getName().endsWith("Planks") && this.craftingPanel3 != null && this.craftingPanel3.getName().endsWith("Planks") && this.craftingPanel4 != null && this.craftingPanel4.getName().endsWith("Planks")))
+        {
+            this.craftingResult = new Items.CraftingTable(4, "Crafting Table");
+            this.craftingResultAmount = 1;
+            ok = true;
+        }
 
         if(!ok)
         {
