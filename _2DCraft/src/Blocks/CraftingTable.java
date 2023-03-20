@@ -35,18 +35,18 @@ public class CraftingTable extends Block{
     }
 
     public void addItemToCraftingPanel(Player.Player player, Item item, int panel){
-        switch (panel) {
-            case 1 -> {this.craftinPanel1 = item; calculateCraftingResult();}
-            case 2 -> {this.craftinPanel2 = item; calculateCraftingResult();}
-            case 3 -> {this.craftinPanel3 = item; calculateCraftingResult();}
-            case 4 -> {this.craftinPanel4 = item; calculateCraftingResult();}
-            case 5 -> {this.craftinPanel5 = item; calculateCraftingResult();}
-            case 6 -> {this.craftinPanel6 = item; calculateCraftingResult();}
-            case 7 -> {this.craftinPanel7 = item; calculateCraftingResult();}
-            case 8 -> {this.craftinPanel8 = item; calculateCraftingResult();}
-            case 9 -> {this.craftinPanel9 = item; calculateCraftingResult();}
-        }
-        player.getInventory().removeItem(item);
+        if(player.getInventory().removeItem(item))
+            switch (panel) {
+                case 1 -> {this.craftinPanel1 = item; calculateCraftingResult();}
+                case 2 -> {this.craftinPanel2 = item; calculateCraftingResult();}
+                case 3 -> {this.craftinPanel3 = item; calculateCraftingResult();}
+                case 4 -> {this.craftinPanel4 = item; calculateCraftingResult();}
+                case 5 -> {this.craftinPanel5 = item; calculateCraftingResult();}
+                case 6 -> {this.craftinPanel6 = item; calculateCraftingResult();}
+                case 7 -> {this.craftinPanel7 = item; calculateCraftingResult();}
+                case 8 -> {this.craftinPanel8 = item; calculateCraftingResult();}
+                case 9 -> {this.craftinPanel9 = item; calculateCraftingResult();}
+            }
     }
 
     public void removeItemFromCraftingPanel(Player.Player player, int panel){

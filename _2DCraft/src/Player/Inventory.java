@@ -14,6 +14,7 @@ public class Inventory {
     private Item craftingPanel4;
     private Item craftingResult;
     private int craftingResultAmount;
+    private Item equippedItem;
 
     public Inventory(int size) {
         this.size = size;
@@ -24,6 +25,7 @@ public class Inventory {
         this.craftingPanel4 = null;
         this.craftingResult = null;
         this.craftingResultAmount = 0;
+        this.equippedItem = null;
     }
 
     public int getSize() {
@@ -50,16 +52,20 @@ public class Inventory {
 
     }
 
-    public void removeItem(Item item){
-        for (int i = 0; i < items.length; i++) {
-            if(items[i] != null && items[i].getName().equals(item.getName())){
-                for (int j = i + 1; j < items.length; j++) {
-                    items[j - 1] = items[j];
+    public boolean removeItem(Item item){
+        boolean hasItem = false;
+        if(item != null)
+            for (int i = 0; i < items.length; i++) {
+                if(items[i] != null && items[i].getName().equals(item.getName())){
+                    for (int j = i + 1; j < items.length; j++) {
+                        items[j - 1] = items[j];
+                    }
+                    items[items.length - 1] = null;
+                    hasItem = true;
+                    break;
                 }
-                items[items.length - 1] = null;
-                break;
             }
-        }
+        return hasItem;
     }
 
     public void showInventory(){
@@ -71,7 +77,7 @@ public class Inventory {
 
         System.out.println();
         if(this.craftingPanel1 == null)
-            System.out.print("Crafting Panel 1: null ");
+            System.out.print("Crafting Panel 1: null | ");
         else
             System.out.print("Crafting Panel 1: " + this.craftingPanel1.getName() + " | ");
         if(this.craftingPanel2 == null)
@@ -79,7 +85,7 @@ public class Inventory {
         else
             System.out.print("Crafting Panel 2: " + this.craftingPanel2.getName() + '\n');
         if(this.craftingPanel3 == null)
-            System.out.print("Crafting Panel 3: null ");
+            System.out.print("Crafting Panel 3: null | ");
         else
             System.out.print("Crafting Panel 3: " + this.craftingPanel3.getName() + " | ");
         if(this.craftingPanel4 == null)
@@ -92,6 +98,39 @@ public class Inventory {
         else
             System.out.println("Crafting Result: " + this.craftingResult.getName() + " x" + this.craftingResultAmount);
 
+        if(this.equippedItem == null)
+            System.out.println("Equipped Item: null" + '\n');
+        else
+            System.out.println("Equipped Item: " + this.equippedItem.getName() + '\n');
+
+    }
+
+    public Item getItemByName(String name){
+        for (Item item : items) {
+            if (item != null && item.getName().equals(name)) {
+                return item;
+            }
+        }
+        System.out.println("Item not found in inventory!" + '\n');
+        return null;
+
+    }
+
+    public void equipItem(Item item){
+        if(this.removeItem(item))
+        {
+            if(this.equippedItem != null)
+                this.addItem(this.equippedItem);
+            this.equippedItem = item;
+        }
+    }
+
+    public void unequipItem(){
+        if(this.equippedItem != null)
+        {
+            this.addItem(this.equippedItem);
+            this.equippedItem = null;
+        }
     }
 
     public void craftItem(){
@@ -107,13 +146,13 @@ public class Inventory {
     }
 
     public void addItemToCraftingPanel(Item item, int panel){
-        switch (panel) {
-            case 1 -> {this.craftingPanel1 = item; this.calculateCraftingResult();}
-            case 2 -> {this.craftingPanel2 = item; this.calculateCraftingResult();}
-            case 3 -> {this.craftingPanel3 = item; this.calculateCraftingResult();}
-            case 4 -> {this.craftingPanel4 = item; this.calculateCraftingResult();}
-        }
-        this.removeItem(item);
+        if(this.removeItem(item))
+            switch (panel) {
+                case 1 -> {this.craftingPanel1 = item; this.calculateCraftingResult();}
+                case 2 -> {this.craftingPanel2 = item; this.calculateCraftingResult();}
+                case 3 -> {this.craftingPanel3 = item; this.calculateCraftingResult();}
+                case 4 -> {this.craftingPanel4 = item; this.calculateCraftingResult();}
+            }
 
     }
 

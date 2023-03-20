@@ -57,5 +57,13 @@ public class Main {
         player.getInventory().craftItem();
         player.getInventory().showInventory();
 
+        player.getInventory().equipItem(player.getInventory().getItemByName("Stick"));
+        player.getInventory().showInventory();
+        player.getInventory().equipItem(player.getInventory().getItemByName("Crafting Table"));
+        player.getInventory().showInventory();
+        player.getInventory().unequipItem();
+        player.getInventory().showInventory();
+        player.getInventory().equipItem(player.getInventory().getItemByName("Oak Planks"));
+
     }
 }
