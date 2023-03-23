@@ -16,4 +16,8 @@ public class Player {
         return inventory;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }

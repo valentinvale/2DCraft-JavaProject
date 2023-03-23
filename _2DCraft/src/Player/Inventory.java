@@ -1,9 +1,24 @@
 package Player;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import Items.Item;
+
+class SortByItemName implements Comparator<Item> {
+    public int compare(Item a, Item b) {
+        if(a == null || b == null)
+            return 0;
+        else if(a.getName() == null || b.getName() == null)
+            return 0;
+        else if(a.getName().equals(b.getName()))
+            return 0;
+        else if(a.getName().compareTo(b.getName()) > 0)
+            return 1;
+        else if(a.getName().compareTo(b.getName()) < 0)
+            return -1;
+        else
+            return 0;
+    }
+}
 
 public class Inventory {
     private Item[] items;
@@ -48,6 +63,9 @@ public class Inventory {
 
         if (!hasSpace) {
             System.out.println("Inventory is full!");
+        }
+        else{
+            Arrays.sort(items, new SortByItemName());
         }
 
     }

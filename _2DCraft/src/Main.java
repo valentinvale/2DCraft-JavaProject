@@ -2,12 +2,20 @@ import Blocks.*;
 import Player.*;
 import Items.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
+
+        Set<Player> playerList = new HashSet<>();
 
         Inventory inventory = new Inventory(20);
         System.out.println(inventory.getItems().length);
         Player player = new Player("Player", 100, inventory);
+        playerList.add(player);
         Block OakLeavesBlock = new Blocks.Leaves(0, "Oak Leaves", 100, "Oak.png", 0, 0);
         Block OakLogBlock = new Blocks.Log(1, "Oak Log", 100, "Oak.png", 0, 0);
         System.out.println(player.getInventory().getItems().length);
@@ -64,6 +72,11 @@ public class Main {
         player.getInventory().unequipItem();
         player.getInventory().showInventory();
         player.getInventory().equipItem(player.getInventory().getItemByName("Oak Planks"));
+
+        for(Player p : playerList){
+            System.out.println(p.getName());
+            player.getInventory().showInventory();
+        }
 
     }
 }
