@@ -13,17 +13,18 @@ public class Main {
         Set<Player> playerList = new HashSet<>();
 
         Inventory inventory = new Inventory(20);
-        System.out.println(inventory.getItems().length);
+        System.out.println(inventory.getItems().size());
         Player player = new Player("Player", 100, inventory);
         playerList.add(player);
         Block OakLeavesBlock = new Blocks.Leaves(0, "Oak Leaves", 100, "Oak.png", 0, 0);
         Block OakLogBlock = new Blocks.Log(1, "Oak Log", 100, "Oak.png", 0, 0);
-        System.out.println(player.getInventory().getItems().length);
+        System.out.println(player.getInventory().getItems().size());
         OakLeavesBlock.dropItem(player);
         OakLogBlock.dropItem(player);
         OakLogBlock.dropItem(player);
         OakLogBlock.dropItem(player);
         OakLogBlock.dropItem(player);
+        //System.out.println(player.getInventory().getItems().size());
         player.getInventory().showInventory();
 
         player.getInventory().addItemToCraftingPanel(new Items.Log(1, "Oak Log"), 1);

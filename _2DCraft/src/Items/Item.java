@@ -1,6 +1,6 @@
 package Items;
 
-public abstract class Item {
+public abstract class Item implements Comparable<Item>{
     private double id;
     private String name;
 
@@ -17,5 +17,16 @@ public abstract class Item {
         return name;
     }
 
+    @Override
+    public int compareTo(Item o) {
+
+        if(this.getName().compareTo(o.getName()) > 0) {
+            return 1;
+        } else if(this.getName().compareTo(o.getName()) < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
 
 }

@@ -3,25 +3,25 @@ import java.util.*;
 
 import Items.Item;
 
-class SortByItemName implements Comparator<Item> {
-    public int compare(Item a, Item b) {
-        if(a == null || b == null)
-            return 0;
-        else if(a.getName() == null || b.getName() == null)
-            return 0;
-        else if(a.getName().equals(b.getName()))
-            return 0;
-        else if(a.getName().compareTo(b.getName()) > 0)
-            return 1;
-        else if(a.getName().compareTo(b.getName()) < 0)
-            return -1;
-        else
-            return 0;
-    }
-}
+//class SortByItemName implements Comparator<Item> {
+//    public int compare(Item a, Item b) {
+//        if(a == null || b == null)
+//            return 0;
+//        else if(a.getName() == null || b.getName() == null)
+//            return 0;
+//        else if(a.getName().equals(b.getName()))
+//            return 0;
+//        else if(a.getName().compareTo(b.getName()) > 0)
+//            return 1;
+//        else if(a.getName().compareTo(b.getName()) < 0)
+//            return -1;
+//        else
+//            return 0;
+//    }
+//}
 
 public class Inventory {
-    private Item[] items;
+    private ArrayList<Item> items;
     private int size;
     private Item craftingPanel1;
     private Item craftingPanel2;
@@ -33,7 +33,7 @@ public class Inventory {
 
     public Inventory(int size) {
         this.size = size;
-        this.items = new Item[size];
+        this.items = new ArrayList<Item>();
         this.craftingPanel1 = null;
         this.craftingPanel2 = null;
         this.craftingPanel3 = null;
@@ -47,25 +47,22 @@ public class Inventory {
         return size;
     }
 
-    public Item[] getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 
     public void addItem(Item item) {
-        boolean hasSpace = false;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] == null) {
-                items[i] = item;
-                hasSpace = true;
-                break;
-            }
-        }
+        boolean hasSpace = true;
+        if(this.items.size() == this.size)
+            hasSpace = false;
+        else
+            this.items.add(item);
 
         if (!hasSpace) {
             System.out.println("Inventory is full!");
         }
         else{
-            Arrays.sort(items, new SortByItemName());
+            Collections.sort(this.items);
         }
 
     }
@@ -73,12 +70,9 @@ public class Inventory {
     public boolean removeItem(Item item){
         boolean hasItem = false;
         if(item != null)
-            for (int i = 0; i < items.length; i++) {
-                if(items[i] != null && items[i].getName().equals(item.getName())){
-                    for (int j = i + 1; j < items.length; j++) {
-                        items[j - 1] = items[j];
-                    }
-                    items[items.length - 1] = null;
+            for (int i = 0; i < items.size(); i++) {
+                if(items.get(i) != null && items.get(i).getName().equals(item.getName())){
+                    items.remove(i);
                     hasItem = true;
                     break;
                 }
