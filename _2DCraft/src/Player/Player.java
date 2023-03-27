@@ -5,11 +5,14 @@ public class Player {
     private String name;
     private int health;
     private Inventory inventory;
+    private RecipeBook recipeBook;
 
-    public Player(String name, int health, Inventory inventory) {
+    public Player(String name, int health, Inventory inventory, RecipeBook recipeBook) {
         this.name = name;
         this.health = health;
         this.inventory = new Inventory(inventory.getSize());
+        this.recipeBook = recipeBook;
+
     }
 
     public Inventory getInventory() {
@@ -18,6 +21,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public RecipeBook getRecipeBook() {
+        return recipeBook;
     }
 
 }
