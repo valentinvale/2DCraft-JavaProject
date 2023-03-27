@@ -89,29 +89,29 @@ public class Inventory {
 
         System.out.println();
         if(this.craftingPanel1 == null)
-            System.out.print("Crafting Panel 1: null | ");
+            System.out.print("Crafting Panel 1: Empty | ");
         else
             System.out.print("Crafting Panel 1: " + this.craftingPanel1.getName() + " | ");
         if(this.craftingPanel2 == null)
-            System.out.print("Crafting Panel 2: null " + '\n');
+            System.out.print("Crafting Panel 2: Empty " + '\n');
         else
             System.out.print("Crafting Panel 2: " + this.craftingPanel2.getName() + '\n');
         if(this.craftingPanel3 == null)
-            System.out.print("Crafting Panel 3: null | ");
+            System.out.print("Crafting Panel 3: Empty | ");
         else
             System.out.print("Crafting Panel 3: " + this.craftingPanel3.getName() + " | ");
         if(this.craftingPanel4 == null)
-            System.out.print("Crafting Panel 4: null " + '\n');
+            System.out.print("Crafting Panel 4: Empty " + '\n');
         else
             System.out.print("Crafting Panel 4: " + this.craftingPanel4.getName() + '\n');
 
         if(this.craftingResult == null)
-            System.out.println("Crafting Result: null ");
+            System.out.println("Crafting Result: Empty ");
         else
             System.out.println("Crafting Result: " + this.craftingResult.getName() + " x" + this.craftingResultAmount);
 
         if(this.equippedItem == null)
-            System.out.println("Equipped Item: null" + '\n');
+            System.out.println("Equipped Item: Empty" + '\n');
         else
             System.out.println("Equipped Item: " + this.equippedItem.getName() + '\n');
 
