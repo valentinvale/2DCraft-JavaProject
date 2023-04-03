@@ -3,12 +3,12 @@ import Player.Player;
 import Player.Inventory;
 
 public abstract class Block {
-    private int id;
-    private String name;
-    private double durability;
-    private String texture;
-    private double x;
-    private double y;
+    protected int id;
+    protected String name;
+    protected double durability;
+    protected String texture;
+    protected double x;
+    protected double y;
 
     public Block(int id, String name, double durability, String texture, double x, double y) {
         this.id = id;

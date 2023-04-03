@@ -12,6 +12,7 @@ public class CraftingTable extends Block{
     private Item craftinPanel7;
     private Item craftinPanel8;
     private Item craftinPanel9;
+
     public CraftingTable(int id, String name, double durability, String texture, double x, double y) {
         super(id, name, durability, texture, x, y);
         this.craftinPanel1 = null;

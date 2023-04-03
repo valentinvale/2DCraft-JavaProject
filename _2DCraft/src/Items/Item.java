@@ -1,8 +1,8 @@
 package Items;
 
 public abstract class Item implements Comparable<Item>{
-    private double id;
-    private String name;
+    protected double id;
+    protected String name;
 
     public Item(double id, String name) {
         this.id = id;
