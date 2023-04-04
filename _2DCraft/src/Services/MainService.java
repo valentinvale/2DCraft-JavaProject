@@ -7,10 +7,11 @@ import Player.RecipeBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MainService {
-    private static ArrayList<Player> playerList;
-    private static int currentPlayerIndex;
+    private static ArrayList<Player> playerList = new ArrayList<Player>();
+    private static int currentPlayerIndex = 0;
     private static final ArrayList<Block> blockList = new ArrayList<Block>(Arrays.asList(
             new Blocks.Log(0, "Oak Log", 100, "Oak.png", 0, 0),
             new Blocks.Log(1, "Birch Log", 100, "Birch.png", 0, 0),
@@ -26,13 +27,7 @@ public class MainService {
             new Blocks.Leaves(11, "Dark Oak Leaves", 100, "DarkOak.png", 0, 0)
     ));
 
-    private static ArrayList<Block> existingBlocksList;
-
-    public MainService() {
-        playerList = new ArrayList<Player>();
-        existingBlocksList = new ArrayList<Block>(); // aici voi adauga blocurile existente in lume la inceputul jocului, unele o sa fie random
-        currentPlayerIndex = 0;
-    }
+    private static ArrayList<Block> existingBlocksList = new ArrayList<Block>();
 
     public static ArrayList<Player> getPlayerList() {
         return playerList;
@@ -115,7 +110,12 @@ public class MainService {
     }
 
     public static void useItem(int indexItem){
-        getCurrentPlayer().getInventory().getItems().get(indexItem).useItem();
+        if(getCurrentPlayer().getInventory().getEquippedItem() != null)
+            getCurrentPlayer().getInventory().getEquippedItem().useItem();
+        else
+            System.out.println("Nu ai niciun item echipat!");
     }
+
+
 
 }

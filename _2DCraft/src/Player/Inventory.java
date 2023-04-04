@@ -51,6 +51,10 @@ public class Inventory {
         return items;
     }
 
+    public Item getEquippedItem() {
+        return equippedItem;
+    }
+
     public void addItem(Item item) {
         boolean hasSpace = true;
         if(this.items.size() == this.size)
