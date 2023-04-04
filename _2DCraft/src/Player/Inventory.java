@@ -117,6 +117,19 @@ public class Inventory {
 
     }
 
+    public void closeInventory(){
+        if(this.craftingPanel1 != null)
+            this.removeItemFromCraftingPanel(1);
+        if(this.craftingPanel2 != null)
+            this.removeItemFromCraftingPanel(2);
+        if(this.craftingPanel3 != null)
+            this.removeItemFromCraftingPanel(3);
+        if(this.craftingPanel4 != null)
+            this.removeItemFromCraftingPanel(4);
+        if(this.craftingResult != null)
+            this.removeItemFromCraftingPanel(5);
+    }
+
     public Item getItemByName(String name){
         for (Item item : items) {
             if (item != null && item.getName().equals(name)) {

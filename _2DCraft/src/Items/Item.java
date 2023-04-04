@@ -17,6 +17,8 @@ public abstract class Item implements Comparable<Item>{
         return name;
     }
 
+    public abstract void useItem();
+
     @Override
     public int compareTo(Item o) {
 

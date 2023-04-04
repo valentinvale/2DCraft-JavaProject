@@ -28,6 +28,9 @@ public abstract class Block {
     }
 
     public abstract void dropItem(Player player);
+    public void breakBlock(Player player) {
+        dropItem(player);
+    }
 
 
 
