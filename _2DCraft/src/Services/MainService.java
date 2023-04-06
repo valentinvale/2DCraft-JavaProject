@@ -100,8 +100,12 @@ public class MainService {
         getCurrentPlayer().getInventory().equipItem(getCurrentPlayer().getInventory().getItems().get(indexItem));
     }
 
-    public static void unequipItem(int indexItem){
-        getCurrentPlayer().getInventory().unequipItem();
+    public static boolean unequipItem(){
+        return getCurrentPlayer().getInventory().unequipItem();
+    }
+
+    public static void removeItem(int indexItem){
+        getCurrentPlayer().getInventory().removeItem(getCurrentPlayer().getInventory().getItems().get(indexItem));
     }
 
     public static void breakBlock(int indexBlock){

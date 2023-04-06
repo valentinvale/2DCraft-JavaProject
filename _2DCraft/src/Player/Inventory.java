@@ -155,12 +155,14 @@ public class Inventory {
         }
     }
 
-    public void unequipItem(){
+    public boolean unequipItem(){
         if(this.equippedItem != null)
         {
             this.addItem(this.equippedItem);
             this.equippedItem = null;
+            return true;
         }
+        return false;
     }
 
     public void craftItem(){

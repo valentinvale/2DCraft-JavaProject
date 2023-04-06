@@ -25,17 +25,27 @@ public class RecipeBook {
     }
 
     public void unlockRecipes(Player player) {
-        Set<Item> itemSet = new HashSet<>(player.getInventory().getItems());
+        boolean noRecipeUnlocked = true;
         for(Recipe recipe : this.recipes)
-            if(!recipe.getUnlocked()){
-                for(Item item: itemSet)
-                    for(Item recipeItem : recipe.getCraftingPanels())
-                        if(recipeItem != null &&  item.getName().equals(recipeItem.getName()))
-                        {
-                            recipe.unlock();
+            if(recipe.getUnlocked())
+                noRecipeUnlocked = false;
 
-                        }
-            }
+        if(noRecipeUnlocked){
+            System.out.println("Nu cunosti nicio reteta inca! Mai colecteaza cateva iteme si revino aici!");
+        }
+        else{
+            Set<Item> itemSet = new HashSet<>(player.getInventory().getItems());
+            for(Recipe recipe : this.recipes)
+                if(!recipe.getUnlocked()){
+                    for(Item item: itemSet)
+                        for(Item recipeItem : recipe.getCraftingPanels())
+                            if(recipeItem != null &&  item.getName().equals(recipeItem.getName()))
+                            {
+                                recipe.unlock();
+
+                            }
+                }
+        }
 
     }
 
