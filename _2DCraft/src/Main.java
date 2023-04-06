@@ -101,6 +101,9 @@ public class Main {
         String inputPlayerMenu;
         String inputInventoryMenu;
         String inputIndexItem;
+        final int numberOfBlocksToGenerate = 5;
+
+        MainService.generateRandomBlocks(numberOfBlocksToGenerate);
 
         do {
             ConsoleService.clearScreen();
@@ -140,8 +143,6 @@ public class Main {
                     }
                     else{
                         MainService.choosePlayer(playerNumber);
-                        MainService.getCurrentPlayer().getInventory().addItem(new Items.Log(1, "Oak Log"));
-                        MainService.getCurrentPlayer().getInventory().addItem(new Items.Log(1, "Oak Log"));
 
                         do{
 
@@ -149,6 +150,7 @@ public class Main {
                             System.out.println("--------------------");
                             System.out.println("1. Deschide inventarul");
                             System.out.println("2. Deschide cartea de retete");
+                            System.out.println("3. Sparge block-uri");
                             System.out.println("0. Iesire");
                             inputPlayerMenu = scanner.nextLine();
                             if(inputPlayerMenu.equals("1")){
@@ -158,11 +160,13 @@ public class Main {
                                     System.out.println("Introduceti numarul actiunii dorite! ");
                                     System.out.println("1. Adauga un item in crafting panel");
                                     System.out.println("2. Elimina un item din crafting panel");
-                                    System.out.println("3. Crafteaza itemul");
+                                    System.out.println("3. Crafteaza item-ul");
                                     System.out.println("4. Echipeaza un item");
-                                    System.out.println("5. Dezechipeaza itemul");
+                                    System.out.println("5. Dezechipeaza item-ul");
                                     System.out.println("6. Elimina item din inventar");
+                                    System.out.println("7. Utilizeaza item-ul echipat");
                                     System.out.println("0. Iesire");
+                                    System.out.println("--------------------");
 
                                     MainService.openInventory();
                                     inputInventoryMenu = scanner.nextLine();
@@ -284,6 +288,11 @@ public class Main {
                                             }
                                         }
                                     }
+                                    else if(inputInventoryMenu.equals("7")) {
+                                        ConsoleService.clearScreen();
+                                        MainService.useItem();
+                                        ConsoleService.pressAnyKeyToContinue();
+                                    }
                                     else{
                                         if(!Objects.equals(inputInventoryMenu, "0"))
                                         {
@@ -299,6 +308,45 @@ public class Main {
                                 ConsoleService.clearScreen();
                                 MainService.openRecipeBook();
                                 ConsoleService.pressAnyKeyToContinue();
+                            }
+                            else if(inputPlayerMenu.equals("3")){
+                                ConsoleService.clearScreen();
+                                MainService.showExistingBlocksList();
+                                System.out.println("Introduceti numarul blocului pe care doriti sa il spargeti: ");
+                                String inputBreakBlock = scanner.nextLine();
+                                if(!inputBreakBlock.matches("[0-9]+")) {
+                                    System.out.println("Optiune invalida!2");
+                                    ConsoleService.pressAnyKeyToContinue();
+                                }
+                                else{
+                                    int indexBlock = parseInt(inputBreakBlock) - 1;
+                                    if(indexBlock >= MainService.getExistingBlocksList().size() || indexBlock < 0){
+                                        System.out.println("Optiune invalida!1");
+                                        ConsoleService.pressAnyKeyToContinue();
+                                    }
+                                    else{
+                                        MainService.breakBlock(indexBlock);
+                                        System.out.println("*Lovesti blocul cu putere...*");
+                                        try{
+                                            Thread.sleep(3000);
+                                        }
+                                        catch (InterruptedException e){
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("*Zgomote de block spart*");
+                                        try{
+                                            Thread.sleep(500);
+                                        }
+                                        catch (InterruptedException e){
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("Blocul a fost spart!");
+                                        if(MainService.getExistingBlocksList().size() < numberOfBlocksToGenerate)
+                                            MainService.generateOneRandomBlock();
+                                        ConsoleService.pressAnyKeyToContinue();
+                                    }
+                                }
+
                             }
                         }while(!inputPlayerMenu.equals("0"));
                     }

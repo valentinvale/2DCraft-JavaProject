@@ -10,6 +10,7 @@ public class CraftingTable extends Item{
     @Override
     public void useItem(){
         MainService.getExistingBlocksList().add(new Blocks.CraftingTable(12, "Crafting Table", 100, "crafting_table", 0, 0));
+        MainService.getCurrentPlayer().getInventory().setEquippedItem(null);
     }
 
 }

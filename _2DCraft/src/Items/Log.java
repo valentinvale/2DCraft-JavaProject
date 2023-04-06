@@ -10,6 +10,6 @@ public class Log extends Item{
     @Override
     public void useItem(){
         MainService.getExistingBlocksList().add(new Blocks.Log(14, name, 100, "log", 0, 0));
-
+        MainService.getCurrentPlayer().getInventory().setEquippedItem(null);
     }
 }

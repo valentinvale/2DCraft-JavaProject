@@ -54,6 +54,9 @@ public class Inventory {
     public Item getEquippedItem() {
         return equippedItem;
     }
+    public void setEquippedItem(Item equippedItem) {
+        this.equippedItem = equippedItem;
+    }
 
     public void addItem(Item item) {
         boolean hasSpace = true;
@@ -85,10 +88,12 @@ public class Inventory {
     }
 
     public void showInventory(){
-        System.out.println("Items: ");
+        int index = 0;
+        System.out.print("Items: ");
         for (Item item : items) {
             if (item != null) {
-                System.out.print(item.getName() + " ");
+                index++;
+                System.out.print(index + ". " + item.getName() + " ");
             }
         }
 

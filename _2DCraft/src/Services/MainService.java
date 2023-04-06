@@ -53,8 +53,9 @@ public class MainService {
         int index = 0;
         for (Block block : existingBlocksList) {
             index++;
-            System.out.println(index + ". " + block.getName());
+            System.out.print(index + ". " + block.getName() + " ");
         }
+        System.out.println();
     }
 
     public static void choosePlayer(int index) {
@@ -108,12 +109,24 @@ public class MainService {
         getCurrentPlayer().getInventory().removeItem(getCurrentPlayer().getInventory().getItems().get(indexItem));
     }
 
+    public static void generateRandomBlocks(int numberOfBlocks){
+        for(int i = 0; i < numberOfBlocks; i++){
+            int randomIndex = (int)(Math.random() * blockList.size());
+            existingBlocksList.add(blockList.get(randomIndex));
+        }
+    }
+
+    public static void generateOneRandomBlock(){
+        int randomIndex = (int)(Math.random() * blockList.size());
+        existingBlocksList.add(blockList.get(randomIndex));
+    }
+
     public static void breakBlock(int indexBlock){
         existingBlocksList.get(indexBlock).breakBlock(getCurrentPlayer());
         existingBlocksList.remove(indexBlock);
     }
 
-    public static void useItem(int indexItem){
+    public static void useItem(){
         if(getCurrentPlayer().getInventory().getEquippedItem() != null)
             getCurrentPlayer().getInventory().getEquippedItem().useItem();
         else
