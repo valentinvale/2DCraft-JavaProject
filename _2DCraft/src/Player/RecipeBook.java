@@ -18,13 +18,6 @@ public class RecipeBook {
     }
 
     public void printRecipes() {
-        for(Recipe recipe : this.recipes) {
-            if(recipe.getUnlocked())
-                recipe.printRecipe();
-        }
-    }
-
-    public void unlockRecipes(Player player) {
         boolean noRecipeUnlocked = true;
         for(Recipe recipe : this.recipes)
             if(recipe.getUnlocked())
@@ -34,24 +27,35 @@ public class RecipeBook {
             System.out.println("Nu cunosti nicio reteta inca! Mai colecteaza cateva iteme si revino aici!");
         }
         else{
-            Set<Item> itemSet = new HashSet<>(player.getInventory().getItems());
-            for(Recipe recipe : this.recipes)
-                if(!recipe.getUnlocked()){
-                    for(Item item: itemSet)
-                        for(Item recipeItem : recipe.getCraftingPanels())
-                            if(recipeItem != null &&  item.getName().equals(recipeItem.getName()))
-                            {
-                                recipe.unlock();
-
-                            }
-                }
+            System.out.println("Recipes:");
+            for(Recipe recipe : this.recipes) {
+                if(recipe.getUnlocked())
+                    recipe.printRecipe();
+            }
         }
+
+    }
+
+    public void unlockRecipes(Player player) {
+
+        Set<Item> itemSet = new HashSet<>(player.getInventory().getItems());
+        for(Recipe recipe : this.recipes)
+            if(!recipe.getUnlocked()){
+                for(Item item: itemSet)
+                    for(Item recipeItem : recipe.getCraftingPanels())
+                        if(recipeItem != null &&  item.getName().equals(recipeItem.getName()))
+                        {
+                            recipe.unlock();
+
+                        }
+            }
+
 
     }
 
     public void openRecipeBook(Player player) {
         this.unlockRecipes(player);
-        System.out.println("Recipes:");
+
         this.printRecipes();
     }
 }

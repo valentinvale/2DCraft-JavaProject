@@ -215,10 +215,30 @@ public class Inventory {
 
     public void removeItemFromCraftingPanel(int panel){
         switch (panel) {
-            case 1 -> {this.addItem(this.craftingPanel1); this.craftingPanel1 = null; this.calculateCraftingResult();}
-            case 2 -> {this.addItem(this.craftingPanel2); this.craftingPanel2 = null; this.calculateCraftingResult();}
-            case 3 -> {this.addItem(this.craftingPanel3); this.craftingPanel3 = null; this.calculateCraftingResult();}
-            case 4 -> {this.addItem(this.craftingPanel4); this.craftingPanel4 = null; this.calculateCraftingResult();}
+            case 1 -> {
+                if(this.craftingPanel1 != null)
+                    this.addItem(this.craftingPanel1);
+                this.craftingPanel1 = null;
+                this.calculateCraftingResult();
+            }
+            case 2 -> {
+                if(this.craftingPanel2 != null)
+                    this.addItem(this.craftingPanel2);
+                this.craftingPanel2 = null;
+                this.calculateCraftingResult();
+            }
+            case 3 -> {
+                if(this.craftingPanel3 != null)
+                    this.addItem(this.craftingPanel3);
+                this.craftingPanel3 = null;
+                this.calculateCraftingResult();
+            }
+            case 4 -> {
+                if(this.craftingPanel4 != null)
+                    this.addItem(this.craftingPanel4);
+                this.craftingPanel4 = null;
+                this.calculateCraftingResult();
+            }
         }
     }
 
@@ -235,19 +255,19 @@ public class Inventory {
             ok = true;
             if(this.craftingPanel1 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel1.getName().substring(0, this.craftingPanel1.getName().indexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(2, this.craftingPanel1.getName().substring(0, this.craftingPanel1.getName().lastIndexOf(" ")) + " Planks");
             }
             else if(this.craftingPanel2 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel2.getName().substring(0, this.craftingPanel2.getName().indexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(2, this.craftingPanel2.getName().substring(0, this.craftingPanel2.getName().lastIndexOf(" ")) + " Planks");
             }
             else if(this.craftingPanel3 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel3.getName().substring(0, this.craftingPanel3.getName().indexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(2, this.craftingPanel3.getName().substring(0, this.craftingPanel3.getName().lastIndexOf(" ")) + " Planks");
             }
             else if(this.craftingPanel4 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel4.getName().substring(0, this.craftingPanel4.getName().indexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(2, this.craftingPanel4.getName().substring(0, this.craftingPanel4.getName().lastIndexOf(" ")) + " Planks");
             }
             this.craftingResultAmount = 4;
         }

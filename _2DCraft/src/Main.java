@@ -156,7 +156,6 @@ public class Main {
                             if(inputPlayerMenu.equals("1")){
                                 ConsoleService.clearScreen();
                                 do{
-
                                     System.out.println("Introduceti numarul actiunii dorite! ");
                                     System.out.println("1. Adauga un item in crafting panel");
                                     System.out.println("2. Elimina un item din crafting panel");
@@ -175,7 +174,7 @@ public class Main {
                                     }
                                     else if(inputInventoryMenu.equals("1")){
                                         ConsoleService.clearScreen();
-                                        System.out.println("Introduceti numarul itemului pe care doriti sa il adaugati in crafting panel: ");
+                                        System.out.println("Introduceti numarul item-ului pe care doriti sa il adaugati in crafting panel: ");
                                         inputIndexItem = scanner.nextLine();
                                         if(!inputIndexItem.matches("[0-9]+")) {
                                             System.out.println("Optiune invalida!");
@@ -189,7 +188,7 @@ public class Main {
                                             }
                                             else{
                                                 String inputPanel;
-                                                System.out.println("Introduceti numarul panelului in care doriti sa adaugati itemul: ");
+                                                System.out.println("Introduceti numarul panelului in care doriti sa adaugati item-ul: ");
                                                 inputPanel = scanner.nextLine();
                                                 if(!inputPanel.matches("[0-9]+")) {
                                                     System.out.println("Optiune invalida!");
@@ -214,7 +213,7 @@ public class Main {
                                     }
                                     else if(inputInventoryMenu.equals("2")){
                                         ConsoleService.clearScreen();
-                                        System.out.println("Introduceti numarul crafting panelului din care doriti sa eliminati itemul: ");
+                                        System.out.println("Introduceti numarul crafting panelului din care doriti sa eliminati item-ul: ");
                                         String inputCraftingPanel = scanner.nextLine();
                                         if(!inputCraftingPanel.matches("[0-9]+")) {
                                             System.out.println("Optiune invalida!");
@@ -235,12 +234,12 @@ public class Main {
                                     else if(inputInventoryMenu.equals("3")){
                                         ConsoleService.clearScreen();
                                         MainService.craftItem();
-                                        System.out.println("*Zgomote de craftare*\nItemul a fost craftat!");
+                                        System.out.println("*Zgomote de craftare*\nitem-ul a fost craftat!");
                                         ConsoleService.pressAnyKeyToContinue();
                                     }
                                     else if(inputInventoryMenu.equals("4")){
                                         ConsoleService.clearScreen();
-                                        System.out.println("Introduceti numarul itemului pe care doriti sa il echipezi: ");
+                                        System.out.println("Introduceti numarul item-ului pe care doriti sa il echipezi: ");
                                         String indexEquipItem = scanner.nextLine();
                                         if(!indexEquipItem.matches("[0-9]+")) {
                                             System.out.println("Optiune invalida!");
@@ -254,7 +253,7 @@ public class Main {
                                             }
                                             else{
                                                 MainService.equipItem(indexItem);
-                                                System.out.println("Itemul a fost echipat!");
+                                                System.out.println("item-ul a fost echipat!");
                                                 ConsoleService.pressAnyKeyToContinue();
                                             }
                                         }
@@ -262,14 +261,14 @@ public class Main {
                                     else if(inputInventoryMenu.equals("5")){
                                         ConsoleService.clearScreen();
                                         if(MainService.unequipItem())
-                                            System.out.println("Itemul a fost dezechipat!");
+                                            System.out.println("item-ul a fost dezechipat!");
                                         else
                                             System.out.println("Nu aveti niciun item echipat!");
                                         ConsoleService.pressAnyKeyToContinue();
                                     }
                                     else if(inputInventoryMenu.equals("6")){
                                         ConsoleService.clearScreen();
-                                        System.out.println("Introduceti numarul itemului pe care doriti sa il eliminati: ");
+                                        System.out.println("Introduceti numarul item-ului pe care doriti sa il eliminati: ");
                                         String indexDeleteItem = scanner.nextLine();
                                         if(!indexDeleteItem.matches("[0-9]+")) {
                                             System.out.println("Optiune invalida!");
@@ -283,7 +282,7 @@ public class Main {
                                             }
                                             else{
                                                 MainService.removeItem(indexItem);
-                                                System.out.println("Itemul a fost eliminat!");
+                                                System.out.println("item-ul a fost eliminat!");
                                                 ConsoleService.pressAnyKeyToContinue();
                                             }
                                         }
@@ -312,7 +311,7 @@ public class Main {
                             else if(inputPlayerMenu.equals("3")){
                                 ConsoleService.clearScreen();
                                 MainService.showExistingBlocksList();
-                                System.out.println("Introduceti numarul blocului pe care doriti sa il spargeti: ");
+                                System.out.println("Introduceti numarul blockului pe care doriti sa il spargeti: ");
                                 String inputBreakBlock = scanner.nextLine();
                                 if(!inputBreakBlock.matches("[0-9]+")) {
                                     System.out.println("Optiune invalida!2");
@@ -326,7 +325,7 @@ public class Main {
                                     }
                                     else{
                                         MainService.breakBlock(indexBlock);
-                                        System.out.println("*Lovesti blocul cu putere...*");
+                                        System.out.println("*Lovesti blockul cu putere...*");
                                         try{
                                             Thread.sleep(3000);
                                         }
@@ -340,7 +339,7 @@ public class Main {
                                         catch (InterruptedException e){
                                             e.printStackTrace();
                                         }
-                                        System.out.println("Blocul a fost spart!");
+                                        System.out.println("Blockul a fost spart!");
                                         if(MainService.getExistingBlocksList().size() < numberOfBlocksToGenerate)
                                             MainService.generateOneRandomBlock();
                                         ConsoleService.pressAnyKeyToContinue();
