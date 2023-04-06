@@ -85,6 +85,7 @@ public class Inventory {
     }
 
     public void showInventory(){
+        System.out.println("Items: ");
         for (Item item : items) {
             if (item != null) {
                 System.out.print(item.getName() + " ");
@@ -177,10 +178,30 @@ public class Inventory {
     public void addItemToCraftingPanel(Item item, int panel){
         if(this.removeItem(item))
             switch (panel) {
-                case 1 -> {this.craftingPanel1 = item; this.calculateCraftingResult();}
-                case 2 -> {this.craftingPanel2 = item; this.calculateCraftingResult();}
-                case 3 -> {this.craftingPanel3 = item; this.calculateCraftingResult();}
-                case 4 -> {this.craftingPanel4 = item; this.calculateCraftingResult();}
+                case 1 -> {
+                    if(this.craftingPanel1 != null)
+                        this.addItem(this.craftingPanel1);
+                    this.craftingPanel1 = item;
+                    this.calculateCraftingResult();
+                }
+                case 2 -> {
+                    if(this.craftingPanel2 != null)
+                        this.addItem(this.craftingPanel2);
+                    this.craftingPanel2 = item;
+                    this.calculateCraftingResult();
+                }
+                case 3 -> {
+                    if(this.craftingPanel3 != null)
+                        this.addItem(this.craftingPanel3);
+                    this.craftingPanel3 = item;
+                    this.calculateCraftingResult();
+                }
+                case 4 -> {
+                    if(this.craftingPanel4 != null)
+                        this.addItem(this.craftingPanel4);
+                    this.craftingPanel4 = item;
+                    this.calculateCraftingResult();
+                }
             }
 
     }
