@@ -136,7 +136,16 @@ public class Main {
                     ConsoleService.pressAnyKeyToContinue();
                 }
                 else{
-                    int playerNumber = Integer.parseInt(inputPlayerNumber);
+                    int playerNumber;
+                    try{
+                        playerNumber = Integer.parseInt(inputPlayerNumber);
+                    }
+                    catch (NumberFormatException e){
+                        System.out.println("Input invalid!");
+                        ConsoleService.pressAnyKeyToContinue();
+                        continue;
+                    }
+
                     if(playerNumber > MainService.getPlayerList().size() || playerNumber < 1) {
                         System.out.println("Input invalid!");
                         ConsoleService.pressAnyKeyToContinue();
@@ -181,7 +190,16 @@ public class Main {
                                             ConsoleService.pressAnyKeyToContinue();
                                         }
                                         else{
-                                            int indexItem = parseInt(inputIndexItem) - 1;
+                                            int indexItem;
+                                            try{
+                                                indexItem = parseInt(inputIndexItem) - 1;
+                                            }
+                                            catch (NumberFormatException e){
+                                                System.out.println("Optiune invalida!");
+                                                ConsoleService.pressAnyKeyToContinue();
+                                                continue;
+                                            }
+
                                             if(indexItem >= MainService.getCurrentPlayer().getInventory().getItems().size() || indexItem < 0){
                                                 System.out.println("Optiune invalida!");
                                                 ConsoleService.pressAnyKeyToContinue();
@@ -195,7 +213,15 @@ public class Main {
                                                     ConsoleService.pressAnyKeyToContinue();
                                                 }
                                                 else{
-                                                    int panel = parseInt(inputPanel);
+                                                    int panel;
+                                                    try{
+                                                        panel = parseInt(inputPanel);
+                                                    }
+                                                    catch (NumberFormatException e){
+                                                        System.out.println("Optiune invalida!");
+                                                        ConsoleService.pressAnyKeyToContinue();
+                                                        continue;
+                                                    }
                                                     if(panel > 4 || panel < 1){
                                                         System.out.println("Optiune invalida!");
                                                         ConsoleService.pressAnyKeyToContinue();
@@ -220,7 +246,15 @@ public class Main {
                                             ConsoleService.pressAnyKeyToContinue();
                                         }
                                         else{
-                                            int craftingPanel = parseInt(inputCraftingPanel);
+                                            int craftingPanel;
+                                            try{
+                                                craftingPanel = parseInt(inputCraftingPanel);
+                                            }
+                                            catch (NumberFormatException e){
+                                                System.out.println("Optiune invalida!");
+                                                ConsoleService.pressAnyKeyToContinue();
+                                                continue;
+                                            }
                                             if(craftingPanel > 4 || craftingPanel < 1){
                                                 System.out.println("Optiune invalida!");
                                                 ConsoleService.pressAnyKeyToContinue();
@@ -246,7 +280,15 @@ public class Main {
                                             ConsoleService.pressAnyKeyToContinue();
                                         }
                                         else{
-                                            int indexItem = parseInt(indexEquipItem) - 1;
+                                            int indexItem;
+                                            try{
+                                                indexItem = parseInt(indexEquipItem) - 1;
+                                            }
+                                            catch (NumberFormatException e){
+                                                System.out.println("Optiune invalida!");
+                                                ConsoleService.pressAnyKeyToContinue();
+                                                continue;
+                                            }
                                             if(indexItem >= MainService.getCurrentPlayer().getInventory().getItems().size() || indexItem < 0){
                                                 System.out.println("Optiune invalida!");
                                                 ConsoleService.pressAnyKeyToContinue();
@@ -275,7 +317,15 @@ public class Main {
                                             ConsoleService.pressAnyKeyToContinue();
                                         }
                                         else{
-                                            int indexItem = parseInt(indexDeleteItem) - 1;
+                                            int indexItem;
+                                            try {
+                                                indexItem = parseInt(indexDeleteItem) - 1;
+                                            }
+                                            catch (NumberFormatException e){
+                                                System.out.println("Optiune invalida!");
+                                                ConsoleService.pressAnyKeyToContinue();
+                                                continue;
+                                            }
                                             if(indexItem >= MainService.getCurrentPlayer().getInventory().getItems().size() || indexItem < 0){
                                                 System.out.println("Optiune invalida!");
                                                 ConsoleService.pressAnyKeyToContinue();
@@ -314,13 +364,21 @@ public class Main {
                                 System.out.println("Introduceti numarul blockului pe care doriti sa il spargeti: ");
                                 String inputBreakBlock = scanner.nextLine();
                                 if(!inputBreakBlock.matches("[0-9]+")) {
-                                    System.out.println("Optiune invalida!2");
+                                    System.out.println("Optiune invalida!");
                                     ConsoleService.pressAnyKeyToContinue();
                                 }
                                 else{
-                                    int indexBlock = parseInt(inputBreakBlock) - 1;
+                                    int indexBlock;
+                                    try{
+                                        indexBlock = parseInt(inputBreakBlock) - 1;
+                                    }
+                                    catch (NumberFormatException e){
+                                        System.out.println("Optiune invalida!");
+                                        ConsoleService.pressAnyKeyToContinue();
+                                        continue;
+                                    }
                                     if(indexBlock >= MainService.getExistingBlocksList().size() || indexBlock < 0){
-                                        System.out.println("Optiune invalida!1");
+                                        System.out.println("Optiune invalida!");
                                         ConsoleService.pressAnyKeyToContinue();
                                     }
                                     else{
@@ -347,6 +405,13 @@ public class Main {
                                 }
 
                             }
+                            else{
+                                if(!Objects.equals(inputPlayerMenu, "0"))
+                                {
+                                    System.out.println("Optiune invalida!");
+                                    ConsoleService.pressAnyKeyToContinue();
+                                }
+                            }
                         }while(!inputPlayerMenu.equals("0"));
                     }
 
@@ -368,7 +433,15 @@ public class Main {
                         ConsoleService.pressAnyKeyToContinue();
                     }
                     else{
-                        int indexPlayer = parseInt(inputDeletePlayer) - 1;
+                        int indexPlayer;
+                        try{
+                            indexPlayer = parseInt(inputDeletePlayer) - 1;
+                        }
+                        catch (NumberFormatException e){
+                            System.out.println("Optiune invalida!");
+                            ConsoleService.pressAnyKeyToContinue();
+                            continue;
+                        }
                         if(indexPlayer >= MainService.getPlayerList().size() || indexPlayer < 0){
                             System.out.println("Optiune invalida!");
                             ConsoleService.pressAnyKeyToContinue();
