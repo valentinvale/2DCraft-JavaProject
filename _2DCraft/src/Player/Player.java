@@ -7,11 +7,11 @@ public class Player {
     private Inventory inventory;
     private RecipeBook recipeBook;
 
-    public Player(String name, int health, Inventory inventory, RecipeBook recipeBook) {
+    public Player(String name, int health, Inventory inventory) {
         this.name = name;
         this.health = health;
         this.inventory = new Inventory(inventory.getSize());
-        this.recipeBook = recipeBook;
+        this.recipeBook = new RecipeBook();
 
     }
 
