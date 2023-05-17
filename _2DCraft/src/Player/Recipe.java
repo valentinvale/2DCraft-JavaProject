@@ -24,6 +24,14 @@ public class Recipe {
         this.unlocked = false;
     }
 
+    public Recipe(Recipe recipe){
+        this.name = recipe.name;
+        this.craftingPanels = recipe.craftingPanels;
+        this.result = recipe.result;
+        this.resultAmount = recipe.resultAmount;
+        this.unlocked = recipe.unlocked;
+    }
+
     public boolean getUnlocked() {
         return unlocked;
     }

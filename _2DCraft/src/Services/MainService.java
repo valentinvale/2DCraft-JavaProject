@@ -57,8 +57,10 @@ public class MainService {
     }
     public static void addNewPlayer(String name) {
         Player player = new Player(name, 100, new Inventory(200));
-        for(Recipe recipe : recipeList)
-            player.getRecipeBook().addRecipe(recipe);
+        for(Recipe recipe : recipeList){
+            Recipe aux = new Recipe(recipe);
+            player.getRecipeBook().addRecipe(aux);
+        }
         playerList.add(player);
     }
 
