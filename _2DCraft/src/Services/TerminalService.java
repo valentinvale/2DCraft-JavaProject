@@ -102,6 +102,8 @@ public class TerminalService {
             String inputIndexItem;
             final int numberOfBlocksToGenerate = 5;
 
+            MainService.loadGame();
+
             MainService.generateRandomBlocks(numberOfBlocksToGenerate);
 
             do {
@@ -110,6 +112,7 @@ public class TerminalService {
                 System.out.println("1. Creeaza un jucator");
                 System.out.println("2. Alege un jucator");
                 System.out.println("3. Elimina un jucator");
+                System.out.println("4. Salveaza jocul");
                 System.out.println("0. Iesire");
                 input = scanner.nextLine();
                 if(Objects.equals(input, "1")) {
@@ -453,6 +456,9 @@ public class TerminalService {
                         }
                     }
 
+                }
+                else if(Objects.equals(input, "4")){
+                    MainService.saveGame();
                 }
                 else{
                     if(!Objects.equals(input, "0"))

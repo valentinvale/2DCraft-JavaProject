@@ -21,7 +21,8 @@ import Items.Item;
 //}
 
 public class Inventory {
-    private ArrayList<Item> items;
+    private int id;
+    private List<Item> items;
     private int size;
     private Item craftingPanel1;
     private Item craftingPanel2;
@@ -31,7 +32,8 @@ public class Inventory {
     private int craftingResultAmount;
     private Item equippedItem;
 
-    public Inventory(int size) {
+    public Inventory(int id, int size) {
+        this.id = id;
         this.size = size;
         this.items = new ArrayList<Item>();
         this.craftingPanel1 = null;
@@ -47,7 +49,7 @@ public class Inventory {
         return size;
     }
 
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
@@ -56,6 +58,10 @@ public class Inventory {
     }
     public void setEquippedItem(Item equippedItem) {
         this.equippedItem = equippedItem;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public void addItem(Item item) {
@@ -149,6 +155,10 @@ public class Inventory {
         System.out.println("Item not found in inventory!" + '\n');
         return null;
 
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void equipItem(Item item){
@@ -255,19 +265,19 @@ public class Inventory {
             ok = true;
             if(this.craftingPanel1 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel1.getName().substring(0, this.craftingPanel1.getName().lastIndexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(0, this.craftingPanel1.getName().substring(0, this.craftingPanel1.getName().lastIndexOf(" ")) + " Planks");
             }
             else if(this.craftingPanel2 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel2.getName().substring(0, this.craftingPanel2.getName().lastIndexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(0, this.craftingPanel2.getName().substring(0, this.craftingPanel2.getName().lastIndexOf(" ")) + " Planks");
             }
             else if(this.craftingPanel3 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel3.getName().substring(0, this.craftingPanel3.getName().lastIndexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(0, this.craftingPanel3.getName().substring(0, this.craftingPanel3.getName().lastIndexOf(" ")) + " Planks");
             }
             else if(this.craftingPanel4 != null)
             {
-                this.craftingResult = new Items.Planks(2, this.craftingPanel4.getName().substring(0, this.craftingPanel4.getName().lastIndexOf(" ")) + " Planks");
+                this.craftingResult = new Items.Planks(0, this.craftingPanel4.getName().substring(0, this.craftingPanel4.getName().lastIndexOf(" ")) + " Planks");
             }
             this.craftingResultAmount = 4;
         }
@@ -275,14 +285,14 @@ public class Inventory {
         else if((this.craftingPanel1 != null && this.craftingPanel1.getName().endsWith("Planks") && this.craftingPanel2 == null && this.craftingPanel3 != null && this.craftingPanel3.getName().endsWith("Planks") && this.craftingPanel4 == null) ||
                 (this.craftingPanel1 == null && this.craftingPanel2 != null && this.craftingPanel2.getName().endsWith("Planks") && this.craftingPanel3 == null && this.craftingPanel4 != null && this.craftingPanel4.getName().endsWith("Planks")))
         {
-            this.craftingResult = new Items.Stick(3, "Stick");
+            this.craftingResult = new Items.Stick(0, "Stick");
             this.craftingResultAmount = 4;
             ok = true;
         }
         // reteta 3: 4 planks -> 1 Crafting Table
         else if((this.craftingPanel1 != null && this.craftingPanel1.getName().endsWith("Planks") && this.craftingPanel2 != null && this.craftingPanel2.getName().endsWith("Planks") && this.craftingPanel3 != null && this.craftingPanel3.getName().endsWith("Planks") && this.craftingPanel4 != null && this.craftingPanel4.getName().endsWith("Planks")))
         {
-            this.craftingResult = new Items.CraftingTable(4, "Crafting Table");
+            this.craftingResult = new Items.CraftingTable(0, "Crafting Table");
             this.craftingResultAmount = 1;
             ok = true;
         }

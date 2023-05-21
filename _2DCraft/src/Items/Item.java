@@ -1,15 +1,15 @@
 package Items;
 
 public abstract class Item implements Comparable<Item>{
-    protected double id;
+    protected int id = 0;
     protected String name;
 
-    public Item(double id, String name) {
+    public Item(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public double getId() {
+    public int getId() {
         return id;
     }
 

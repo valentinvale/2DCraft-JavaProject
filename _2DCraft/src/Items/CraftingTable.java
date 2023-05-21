@@ -3,7 +3,7 @@ package Items;
 import Services.MainService;
 
 public class CraftingTable extends Item{
-    public CraftingTable(double id, String name) {
+    public CraftingTable(int id, String name) {
                 super(id, name);
             }
 

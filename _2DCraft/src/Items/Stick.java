@@ -2,7 +2,7 @@ package Items;
 
 public class Stick extends Item{
 
-    public Stick(double id, String name) {
+    public Stick(int id, String name) {
         super(id, name);
     }
 

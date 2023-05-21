@@ -1,6 +1,9 @@
 package Services;
 
 import Blocks.Block;
+import DataBase.InventoryDatabase;
+import DataBase.ItemDatabase;
+import DataBase.PlayerDatabase;
 import Items.Item;
 import Player.Player;
 import Player.Inventory;
@@ -9,10 +12,17 @@ import Player.Recipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainService {
-    private static ArrayList<Player> playerList = new ArrayList<Player>();
+
+    private static PlayerDatabase playerDatabase = new PlayerDatabase();
+    private static InventoryDatabase inventoryDatabase = new InventoryDatabase();
+    private static ItemDatabase itemDatabase = new ItemDatabase();
+    private static int maxPlayerId = playerDatabase.getMaxId();
+    private static int maxInventoryId = inventoryDatabase.getMaxId();
+    private static List<Player> playerList = new ArrayList<Player>();
     private static int currentPlayerIndex = 0;
     private static final ArrayList<Block> blockList = new ArrayList<Block>(Arrays.asList(
             new Blocks.Log(0, "Oak Log", 100, "Oak.png", 0, 0),
@@ -30,33 +40,65 @@ public class MainService {
     ));
 
     private static final ArrayList<Recipe>  recipeList = new ArrayList<Recipe>(Arrays.asList(
-            new Recipe("Oak Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(1, "Oak Log"))), new Items.Planks(2, "Oak Planks"), 4),
-            new Recipe("Spruce Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(1, "Spruce Log"))), new Items.Planks(2, "Spruce Planks"), 4),
-            new Recipe("Birch Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(1, "Birch Log"))), new Items.Planks(2, "Birch Planks"), 4),
-            new Recipe("Jungle Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(1, "Jungle Log"))), new Items.Planks(2, "Jungle Planks"), 4),
-            new Recipe("Acacia Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(1, "Acacia Log"))), new Items.Planks(2, "Acacia Planks"), 4),
-            new Recipe("Dark Oak Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(1, "Dark Oak Log"))), new Items.Planks(2, "Dark Oak Planks"), 4),
-            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Oak Planks"), new Items.Planks(2, "Oak Planks"), null, new Items.Planks(2, "Oak Planks"), new Items.Planks(2, "Oak Planks"))), new Items.CraftingTable(4, "Crafting Table"), 1),
-            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Spruce Planks"), new Items.Planks(2, "Spruce Planks"), null, new Items.Planks(2, "Spruce Planks"), new Items.Planks(2, "Spruce Planks"))), new Items.CraftingTable(4, "Crafting Table"), 1),
-            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Birch Planks"), new Items.Planks(2, "Birch Planks"), null, new Items.Planks(2, "Birch Planks"), new Items.Planks(2, "Birch Planks"))), new Items.CraftingTable(4, "Crafting Table"), 1),
-            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Jungle Planks"), new Items.Planks(2, "Jungle Planks"), null, new Items.Planks(2, "Jungle Planks"), new Items.Planks(2, "Jungle Planks"))), new Items.CraftingTable(4, "Crafting Table"), 1),
-            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Acacia Planks"), new Items.Planks(2, "Acacia Planks"), null, new Items.Planks(2, "Acacia Planks"), new Items.Planks(2, "Acacia Planks"))), new Items.CraftingTable(4, "Crafting Table"), 1),
-            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Dark Oak Planks"), new Items.Planks(2, "Dark Oak Planks"), null, new Items.Planks(2, "Dark Oak Planks"), new Items.Planks(2, "Dark Oak Planks"))), new Items.CraftingTable(4, "Crafting Table"), 1),
-            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Oak Planks"), null, null, new Items.Planks(2, "Oak Planks"))), new Items.Stick(3, "Stick"), 4),
-            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Spruce Planks"), null, null, new Items.Planks(2, "Spruce Planks"))), new Items.Stick(3, "Stick"), 4),
-            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Birch Planks"), null, null, new Items.Planks(2, "Birch Planks"))), new Items.Stick(3, "Stick"), 4),
-            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Jungle Planks"), null, null, new Items.Planks(2, "Jungle Planks"))), new Items.Stick(3, "Stick"), 4),
-            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Acacia Planks"), null, null, new Items.Planks(2, "Acacia Planks"))), new Items.Stick(3, "Stick"), 4),
-            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Dark Oak Planks"), null, null, new Items.Planks(2, "Dark Oak Planks"))), new Items.Stick(3, "Stick"), 4)
+            new Recipe("Oak Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(0, "Oak Log"))), new Items.Planks(0, "Oak Planks"), 4),
+            new Recipe("Spruce Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(0, "Spruce Log"))), new Items.Planks(0, "Spruce Planks"), 4),
+            new Recipe("Birch Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(0, "Birch Log"))), new Items.Planks(0, "Birch Planks"), 4),
+            new Recipe("Jungle Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(0, "Jungle Log"))), new Items.Planks(0, "Jungle Planks"), 4),
+            new Recipe("Acacia Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(0, "Acacia Log"))), new Items.Planks(0, "Acacia Planks"), 4),
+            new Recipe("Dark Oak Planks", new ArrayList<Item>(Arrays.asList(new Items.Log(0, "Dark Oak Log"))), new Items.Planks(0, "Dark Oak Planks"), 4),
+            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Oak Planks"), new Items.Planks(0, "Oak Planks"), null, new Items.Planks(0, "Oak Planks"), new Items.Planks(0, "Oak Planks"))), new Items.CraftingTable(0, "Crafting Table"), 1),
+            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Spruce Planks"), new Items.Planks(0, "Spruce Planks"), null, new Items.Planks(0, "Spruce Planks"), new Items.Planks(0, "Spruce Planks"))), new Items.CraftingTable(0, "Crafting Table"), 1),
+            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Birch Planks"), new Items.Planks(0, "Birch Planks"), null, new Items.Planks(0, "Birch Planks"), new Items.Planks(0, "Birch Planks"))), new Items.CraftingTable(0, "Crafting Table"), 1),
+            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Jungle Planks"), new Items.Planks(0, "Jungle Planks"), null, new Items.Planks(0, "Jungle Planks"), new Items.Planks(0, "Jungle Planks"))), new Items.CraftingTable(0, "Crafting Table"), 1),
+            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Acacia Planks"), new Items.Planks(0, "Acacia Planks"), null, new Items.Planks(0, "Acacia Planks"), new Items.Planks(0, "Acacia Planks"))), new Items.CraftingTable(0, "Crafting Table"), 1),
+            new Recipe("Crafting Table", new ArrayList<Item>(Arrays.asList(new Items.Planks(2, "Dark Oak Planks"), new Items.Planks(0, "Dark Oak Planks"), null, new Items.Planks(0, "Dark Oak Planks"), new Items.Planks(0, "Dark Oak Planks"))), new Items.CraftingTable(0, "Crafting Table"), 1),
+            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Oak Planks"), null, null, new Items.Planks(0, "Oak Planks"))), new Items.Stick(0, "Stick"), 4),
+            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Spruce Planks"), null, null, new Items.Planks(0, "Spruce Planks"))), new Items.Stick(0, "Stick"), 4),
+            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Birch Planks"), null, null, new Items.Planks(0, "Birch Planks"))), new Items.Stick(0, "Stick"), 4),
+            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Jungle Planks"), null, null, new Items.Planks(0, "Jungle Planks"))), new Items.Stick(0, "Stick"), 4),
+            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Acacia Planks"), null, null, new Items.Planks(0, "Acacia Planks"))), new Items.Stick(0, "Stick"), 4),
+            new Recipe("Stick", new ArrayList<Item>(Arrays.asList(new Items.Planks(0, "Dark Oak Planks"), null, null, new Items.Planks(0, "Dark Oak Planks"))), new Items.Stick(0, "Stick"), 4)
     ));
 
-    private static ArrayList<Block> existingBlocksList = new ArrayList<Block>();
+    private static List<Block> existingBlocksList = new ArrayList<Block>();
 
-    public static ArrayList<Player> getPlayerList() {
+    public static List<Player> getPlayerList() {
         return playerList;
     }
+
+    public static void loadGame(){
+        PlayerDatabase playerDatabase = new PlayerDatabase();
+        playerList = playerDatabase.getAllPlayers();
+    }
+
+    public static void saveGame(){
+        PlayerDatabase playerDatabase = new PlayerDatabase();
+        InventoryDatabase inventoryDatabase = new InventoryDatabase();
+        ItemDatabase itemDatabase = new ItemDatabase();
+
+        for(Player player : playerList){
+            if(!playerDatabase.checkIfPlayerExists(player.getId())){
+                playerDatabase.addPlayer(player.getName(), player.getHealth());
+                //System.out.println("id player" + player.getId());
+                inventoryDatabase.addInventory(player.getId());
+                for(Item item : player.getInventory().getItems()){
+                    //System.out.println("id inventar" + player.getInventory().getId());
+                    itemDatabase.addItem(item.getName(), player.getInventory().getId());
+                }
+            }
+            else{
+                for(Item item : player.getInventory().getItems()){
+                    if(!itemDatabase.checkIfItemExists(item.getId())){
+                        itemDatabase.addItem(item.getName(), player.getInventory().getId());
+                    }
+                }
+            }
+        }
+    }
     public static void addNewPlayer(String name) {
-        Player player = new Player(name, 100, new Inventory(200));
+        maxPlayerId++;
+        maxInventoryId++;
+        Player player = new Player(maxPlayerId, name, 100, new Inventory(maxInventoryId, 200));
         for(Recipe recipe : recipeList){
             Recipe aux = new Recipe(recipe);
             player.getRecipeBook().addRecipe(aux);
@@ -65,6 +107,18 @@ public class MainService {
     }
 
     public static void removePlayer(int index) {
+        if(playerDatabase.checkIfPlayerExists(playerList.get(index).getId())){
+            for(Item item : playerList.get(index).getInventory().getItems()){
+                if(itemDatabase.checkIfItemExists(item.getId())){
+                    //System.out.println("id item" + item.getId());
+                    itemDatabase.removeItem(item.getId());
+                }
+            }
+            //System.out.println("id inventar" + playerList.get(index).getInventory().getId());
+            inventoryDatabase.removeInventory(playerList.get(index).getInventory().getId());
+            //System.out.println("id player" + playerList.get(index).getId());
+            playerDatabase.removePlayer(playerList.get(index).getId());
+        }
         playerList.remove(index);
     }
 
@@ -96,7 +150,7 @@ public class MainService {
         return playerList.get(currentPlayerIndex);
     }
 
-    public static ArrayList<Block> getExistingBlocksList() {
+    public static List<Block> getExistingBlocksList() {
         return existingBlocksList;
     }
 

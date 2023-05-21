@@ -3,7 +3,7 @@ package Items;
 import Services.MainService;
 
 public class Leaves extends Item{
-    public Leaves(double id, String name) {
+    public Leaves(int id, String name) {
                 super(id, name);
             }
 

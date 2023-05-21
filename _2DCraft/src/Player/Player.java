@@ -2,15 +2,17 @@ package Player;
 
 public class Player {
 
+    private int id = 0;
     private String name;
     private int health;
     private Inventory inventory;
     private RecipeBook recipeBook;
 
-    public Player(String name, int health, Inventory inventory) {
+    public Player(int id, String name, int health, Inventory inventory) {
+        this.id = id;
         this.name = name;
         this.health = health;
-        this.inventory = new Inventory(inventory.getSize());
+        this.inventory = inventory;
         this.recipeBook = new RecipeBook();
 
     }
@@ -25,6 +27,14 @@ public class Player {
 
     public RecipeBook getRecipeBook() {
         return recipeBook;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }

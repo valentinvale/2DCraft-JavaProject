@@ -4,7 +4,7 @@ import Services.MainService;
 
 public class Planks extends Item{
 
-    public Planks(double id, String name) {
+    public Planks(int id, String name) {
         super(id, name);
     }
 

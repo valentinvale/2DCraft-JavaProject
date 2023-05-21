@@ -3,7 +3,7 @@ package Items;
 import Services.MainService;
 
 public class Log extends Item{
-    public Log(double id, String name) {
+    public Log(int id, String name) {
             super(id, name);
         }
 
