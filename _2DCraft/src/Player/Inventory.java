@@ -66,8 +66,10 @@ public class Inventory {
 
     public void addItem(Item item) {
         boolean hasSpace = true;
-        if(this.items.size() == this.size)
+        System.out.println(this.items.size() + " " + this.size);
+        if(this.items.size() == this.size){
             hasSpace = false;
+        }
         else
             this.items.add(item);
 
@@ -79,12 +81,21 @@ public class Inventory {
         }
 
     }
-
+    public boolean checkIfItemExists(int id){
+        boolean exists = false;
+        for (Item item : items) {
+            if(item != null && item.getId() == id){
+                exists = true;
+                break;
+            }
+        }
+        return exists;
+    }
     public boolean removeItem(Item item){
         boolean hasItem = false;
         if(item != null)
             for (int i = 0; i < items.size(); i++) {
-                if(items.get(i) != null && items.get(i).getName().equals(item.getName())){
+                if(items.get(i) != null && items.get(i).getId() == item.getId()){
                     items.remove(i);
                     hasItem = true;
                     break;

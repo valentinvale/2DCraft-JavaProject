@@ -4,6 +4,8 @@ import Items.Item;
 import Player.Inventory;
 
 import java.sql.Connection;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class InventoryDatabase {
@@ -28,6 +30,7 @@ public class InventoryDatabase {
                 Inventory inventory = new Inventory(id, 10);
 
                 List<Item> items = itemDatabase.getItemsByInventoryId(id);
+                Collections.sort(items);
 
                 inventory.setItems(items);
 

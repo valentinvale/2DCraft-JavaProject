@@ -87,11 +87,18 @@ public class MainService {
                 }
             }
             else{
+                List<Item> databaseItems = itemDatabase.getItemsByInventoryId(player.getInventory().getId());
+                for(Item item : databaseItems){
+                    if(!player.getInventory().checkIfItemExists(item.getId())){
+                        itemDatabase.removeItem(item.getId());
+                    }
+                }
                 for(Item item : player.getInventory().getItems()){
                     if(!itemDatabase.checkIfItemExists(item.getId())){
                         itemDatabase.addItem(item.getName(), player.getInventory().getId());
                     }
                 }
+
             }
         }
     }
