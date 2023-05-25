@@ -2,6 +2,7 @@ package DataBase;
 
 import Items.Item;
 import Player.Inventory;
+import Services.AuditService;
 
 import java.sql.Connection;
 import java.util.Collection;
@@ -34,6 +35,8 @@ public class InventoryDatabase {
 
                 inventory.setItems(items);
 
+                AuditService.writeAction("Get inventory by player id");
+
                 return inventory;
             }
         }
@@ -52,6 +55,7 @@ public class InventoryDatabase {
 
             while (result.next()) {
                 maxId = result.getInt(1);
+                AuditService.writeAction("Get inventory max id");
             }
         } catch (Exception e) {
             System.out.println("Error while getting max id: " + e.getMessage());
@@ -66,6 +70,9 @@ public class InventoryDatabase {
             var preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, playerId);
             preparedStatement.executeUpdate();
+
+            AuditService.writeAction("Add inventory");
+
         }
         catch (Exception e){
             System.out.println("Error while adding inventory: " + e.getMessage());
@@ -78,6 +85,9 @@ public class InventoryDatabase {
             var preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
+
+            AuditService.writeAction("Remove inventory");
+
         }
         catch (Exception e){
             System.out.println("Error while removing inventory: " + e.getMessage());

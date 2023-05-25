@@ -12,7 +12,9 @@ public class RecipeBook {
     public RecipeBook() {
         this.recipes = new ArrayList<Recipe>();
     }
-
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
     public void addRecipe(Recipe recipe) {
         this.recipes.add(recipe);
     }

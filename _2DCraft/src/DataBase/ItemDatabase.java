@@ -1,6 +1,7 @@
 package DataBase;
 
 import Items.Item;
+import Services.AuditService;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -46,6 +47,9 @@ public class ItemDatabase {
                 }
 
             }
+
+            AuditService.writeAction("Get items by inventory id");
+
         } catch (Exception e) {
             System.out.println("Error while returning items: " + e.getMessage());
         }
@@ -59,8 +63,12 @@ public class ItemDatabase {
             var result = preparedStatement.executeQuery();
 
             while(result.next()) {
+                AuditService.writeAction("Get item max id");
                 return result.getInt("MAX(item_id)");
             }
+
+
+
         }
         catch (Exception e){
             System.out.println("Error while returning max item id: " + e.getMessage());
@@ -76,8 +84,10 @@ public class ItemDatabase {
             var result = preparedStatement.executeQuery();
 
             while(result.next()) {
+                AuditService.writeAction("Check if item exists");
                 return true;
             }
+
         }
         catch (Exception e){
             System.out.println("Error while checking if item exists: " + e.getMessage());
@@ -92,6 +102,9 @@ public class ItemDatabase {
             preparedStatement.setString(1, name);
             preparedStatement.setInt(2, inventoryId);
             preparedStatement.executeUpdate();
+
+            AuditService.writeAction("Add item");
+
         } catch (Exception e) {
             System.out.println("Error while adding item: " + e.getMessage());
         }
@@ -103,6 +116,9 @@ public class ItemDatabase {
             var preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
+
+            AuditService.writeAction("Remove item");
+
         } catch (Exception e) {
             System.out.println("Error while deleting item: " + e.getMessage());
         }

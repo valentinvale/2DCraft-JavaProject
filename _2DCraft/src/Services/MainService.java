@@ -4,6 +4,7 @@ import Blocks.Block;
 import DataBase.InventoryDatabase;
 import DataBase.ItemDatabase;
 import DataBase.PlayerDatabase;
+import DataBase.RecipebookDatabase;
 import Items.Item;
 import Player.Player;
 import Player.Inventory;
@@ -20,6 +21,8 @@ public class MainService {
     private static PlayerDatabase playerDatabase = new PlayerDatabase();
     private static InventoryDatabase inventoryDatabase = new InventoryDatabase();
     private static ItemDatabase itemDatabase = new ItemDatabase();
+
+    private static RecipebookDatabase recipebookDatabase = new RecipebookDatabase();
     private static int maxPlayerId = playerDatabase.getMaxId();
     private static int maxInventoryId = inventoryDatabase.getMaxId();
     private static List<Player> playerList = new ArrayList<Player>();
@@ -66,6 +69,10 @@ public class MainService {
         return playerList;
     }
 
+    public static List<Recipe> getRecipeList() {
+        return recipeList;
+    }
+
     public static void loadGame(){
         PlayerDatabase playerDatabase = new PlayerDatabase();
         playerList = playerDatabase.getAllPlayers();
@@ -85,6 +92,14 @@ public class MainService {
                     //System.out.println("id inventar" + player.getInventory().getId());
                     itemDatabase.addItem(item.getName(), player.getInventory().getId());
                 }
+                String rbUnlockString = "";
+                for(Recipe recipe : player.getRecipeBook().getRecipes()){
+                    if(recipe.getUnlocked())
+                        rbUnlockString += "1";
+                    else
+                        rbUnlockString += "0";
+                }
+                recipebookDatabase.addRecipebook(rbUnlockString, player.getId());
             }
             else{
                 List<Item> databaseItems = itemDatabase.getItemsByInventoryId(player.getInventory().getId());
@@ -96,6 +111,12 @@ public class MainService {
                 for(Item item : player.getInventory().getItems()){
                     if(!itemDatabase.checkIfItemExists(item.getId())){
                         itemDatabase.addItem(item.getName(), player.getInventory().getId());
+                    }
+                }
+                String currentUnlockString = recipebookDatabase.getUnlockstring(player.getId());
+                for(int i = 0; i < player.getRecipeBook().getRecipes().size(); i++){
+                    if(player.getRecipeBook().getRecipes().get(i).getUnlocked() && currentUnlockString.charAt(i) == '0'){
+                        recipebookDatabase.updateUnlockString(player.getId(), i);
                     }
                 }
 

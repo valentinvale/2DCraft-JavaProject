@@ -66,7 +66,7 @@ public class Inventory {
 
     public void addItem(Item item) {
         boolean hasSpace = true;
-        System.out.println(this.items.size() + " " + this.size);
+        //System.out.println(this.items.size() + " " + this.size);
         if(this.items.size() == this.size){
             hasSpace = false;
         }
