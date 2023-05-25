@@ -43,7 +43,7 @@ public class PlayerDatabase {
                 }
 
                 String unlockString = recipebookDatabase.getUnlockstring(id);
-                System.out.println(unlockString);
+                //System.out.println(unlockString);
                 for(int i = 0; i < unlockString.length(); i++){
                     if(unlockString.charAt(i) == '1'){
                         player.getRecipeBook().getRecipes().get(i).unlock();

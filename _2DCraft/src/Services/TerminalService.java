@@ -104,7 +104,10 @@ public class TerminalService {
 
             MainService.loadGame();
 
-            MainService.generateRandomBlocks(numberOfBlocksToGenerate);
+            if(MainService.getExistingBlocksList().size() < 5){
+                System.out.println("Nr of existing blocks: " + MainService.getExistingBlocksList().size());
+                MainService.generateRandomBlocks(numberOfBlocksToGenerate - MainService.getExistingBlocksList().size());
+            }
 
             do {
                 ConsoleService.clearScreen();
@@ -363,7 +366,7 @@ public class TerminalService {
                                 else if(inputPlayerMenu.equals("3")){
                                     ConsoleService.clearScreen();
                                     MainService.showExistingBlocksList();
-                                    System.out.println("Introduceti numarul blockului pe care doriti sa il spargeti: ");
+                                    System.out.println("Introduceti numarul block-ului pe care doriti sa il spargeti: ");
                                     String inputBreakBlock = scanner.nextLine();
                                     if(!inputBreakBlock.matches("[0-9]+")) {
                                         System.out.println("Optiune invalida!");
@@ -385,7 +388,7 @@ public class TerminalService {
                                         }
                                         else{
                                             MainService.breakBlock(indexBlock);
-                                            System.out.println("*Lovesti blockul cu putere...*");
+                                            System.out.println("*Lovesti block-ul cu putere...*");
                                             try{
                                                 Thread.sleep(3000);
                                             }
@@ -399,7 +402,7 @@ public class TerminalService {
                                             catch (InterruptedException e){
                                                 e.printStackTrace();
                                             }
-                                            System.out.println("Blockul a fost spart!");
+                                            System.out.println("Block-ul a fost spart!");
                                             if(MainService.getExistingBlocksList().size() < numberOfBlocksToGenerate)
                                                 MainService.generateOneRandomBlock();
                                             ConsoleService.pressAnyKeyToContinue();

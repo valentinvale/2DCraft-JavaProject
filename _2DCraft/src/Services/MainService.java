@@ -1,10 +1,7 @@
 package Services;
 
 import Blocks.Block;
-import DataBase.InventoryDatabase;
-import DataBase.ItemDatabase;
-import DataBase.PlayerDatabase;
-import DataBase.RecipebookDatabase;
+import DataBase.*;
 import Items.Item;
 import Player.Player;
 import Player.Inventory;
@@ -73,15 +70,40 @@ public class MainService {
         return recipeList;
     }
 
+    public static boolean checkIfBlockExistsInExistingBlockList(int id){
+        for(Block block : existingBlocksList){
+            if(block.getId() == id)
+                return true;
+        }
+        return false;
+    }
+
     public static void loadGame(){
         PlayerDatabase playerDatabase = new PlayerDatabase();
         playerList = playerDatabase.getAllPlayers();
+        BlockDatabase blockDatabase = new BlockDatabase();
+        existingBlocksList = blockDatabase.getAllBlocks();
     }
 
     public static void saveGame(){
         PlayerDatabase playerDatabase = new PlayerDatabase();
         InventoryDatabase inventoryDatabase = new InventoryDatabase();
         ItemDatabase itemDatabase = new ItemDatabase();
+        BlockDatabase blockDatabase = new BlockDatabase();
+
+        for(Block block : existingBlocksList){
+            if(!blockDatabase.checkIfBlockExists(block.getId())){
+                blockDatabase.addBlock(block.getName());
+            }
+        }
+
+        List<Block> databaseBlocks = blockDatabase.getAllBlocks();
+
+        for(Block block : databaseBlocks){
+            if(!MainService.checkIfBlockExistsInExistingBlockList(block.getId())){
+                blockDatabase.removeBlock(block.getId());
+            }
+        }
 
         for(Player player : playerList){
             if(!playerDatabase.checkIfPlayerExists(player.getId())){
@@ -123,6 +145,7 @@ public class MainService {
             }
         }
     }
+
     public static void addNewPlayer(String name) {
         maxPlayerId++;
         maxInventoryId++;
