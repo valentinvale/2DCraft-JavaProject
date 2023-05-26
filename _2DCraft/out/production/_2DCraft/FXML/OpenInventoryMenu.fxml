@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<VBox fx:id="root" alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OpenInventoryMenuController">
+    <Label fx:id="playerName" />
+    <VBox fx:id="inventoryItemsContainer" spacing="5" alignment="CENTER"/>
+    <Label fx:id="craftingPanelItems"/>
+    <Label fx:id="craftingResultLabel"/>
+    <Label fx:id="equippedItemLabel" />
+    <Button text="Adauga un item in crafting panel" onAction="#handleAddItemToCraftingPanel"/>
+    <Button text="Elimina un item din crafting panel" onAction="#handleRemoveItemFromCraftingPanel"/>
+    <Button text="Crafteaza item-ul" onAction="#handleCraftItem"/>
+    <Button text="Echipeaza un item" onAction="#handleEquipItem"/>
+    <Button text="Dezechipeaza item-ul" onAction="#handleUnequipItem"/>
+    <Button text="Elimina un item din inventar" onAction="#handleRemoveItemFromInventory"/>
+    <Button text="Utilizeaza item-ul echipat" onAction="#handleUseEquippedItem"/>
+    <Button text="Inapoi" onAction="#handleBackButton"/>
+    <stylesheets>
+        <URL value="@styles/mainstyle.css" />
+    </stylesheets>
+</VBox>

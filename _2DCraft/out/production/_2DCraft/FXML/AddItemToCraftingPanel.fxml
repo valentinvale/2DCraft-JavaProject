@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<VBox fx:id="root" alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddItemToCraftingPanelController" style="/styles/mainstyle.css">
+    <Label text="Alege item-ul"/>
+    <ChoiceBox fx:id="itemChoiceBox" prefWidth="150"/>
+    <VBox alignment="CENTER">
+        <HBox fx:id="panelsBox" spacing="5">
+            <Button text="1" onAction="#handleAddItemToCraftingPanel"/>
+            <Button text="2" onAction="#handleAddItemToCraftingPanel"/>
+            <Button text="3" onAction="#handleAddItemToCraftingPanel"/>
+            <Button text="4" onAction="#handleAddItemToCraftingPanel"/>
+        </HBox>
+    </VBox>
+    <Button text="Inapoi" onAction="#handleBackButton"/>
+    <stylesheets>
+        <URL value="@styles/mainstyle.css" />
+    </stylesheets>
+</VBox>

@@ -167,6 +167,7 @@ public class MainService {
             }
             //System.out.println("id inventar" + playerList.get(index).getInventory().getId());
             inventoryDatabase.removeInventory(playerList.get(index).getInventory().getId());
+            recipebookDatabase.removeRecipebook(playerList.get(index).getId());
             //System.out.println("id player" + playerList.get(index).getId());
             playerDatabase.removePlayer(playerList.get(index).getId());
         }

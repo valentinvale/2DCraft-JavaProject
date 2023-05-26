@@ -105,7 +105,7 @@ public class TerminalService {
             MainService.loadGame();
 
             if(MainService.getExistingBlocksList().size() < 5){
-                System.out.println("Nr of existing blocks: " + MainService.getExistingBlocksList().size());
+                //System.out.println("Nr of existing blocks: " + MainService.getExistingBlocksList().size());
                 MainService.generateRandomBlocks(numberOfBlocksToGenerate - MainService.getExistingBlocksList().size());
             }
 

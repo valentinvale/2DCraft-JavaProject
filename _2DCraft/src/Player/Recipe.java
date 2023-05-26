@@ -84,4 +84,46 @@ public class Recipe {
         System.out.println();
     }
 
+    public String getRecipeString(){
+        String recipeString = name + '\n';
+        if(this.craftingPanels.get(0) != null)
+            recipeString += this.craftingPanels.get(0).getName() + " | ";
+        else
+            recipeString += "Empty | ";
+        if(this.craftingPanels.get(1) != null)
+            recipeString += this.craftingPanels.get(1).getName() + " | ";
+        else
+            recipeString += "Empty | ";
+        if(this.craftingPanels.get(2) != null)
+            recipeString += this.craftingPanels.get(2).getName() + '\n';
+        else
+            recipeString += "Empty " + '\n';
+        if(this.craftingPanels.get(3) != null)
+            recipeString += this.craftingPanels.get(3).getName() + " | ";
+        else
+            recipeString += "Empty | ";
+        if(this.craftingPanels.get(4) != null)
+            recipeString += this.craftingPanels.get(4).getName() + " | ";
+        else
+            recipeString += "Empty | ";
+        if(this.craftingPanels.get(5) != null)
+            recipeString += this.craftingPanels.get(5).getName() + " => " + this.resultAmount + "x " + this.result.getName() + '\n';
+        else
+            recipeString += "Empty " + " => " + this.resultAmount + "x " + this.result.getName() + '\n';
+        if(this.craftingPanels.get(6) != null)
+            recipeString += this.craftingPanels.get(6).getName() + " | ";
+        else
+            recipeString += "Empty | ";
+        if(this.craftingPanels.get(7) != null)
+            recipeString += this.craftingPanels.get(7).getName() + " | ";
+        else
+            recipeString += "Empty | ";
+        if(this.craftingPanels.get(8) != null)
+            recipeString += this.craftingPanels.get(8).getName() + '\n';
+        else
+            recipeString += "Empty " + '\n';
+        recipeString += '\n';
+        return recipeString;
+    }
+
 }

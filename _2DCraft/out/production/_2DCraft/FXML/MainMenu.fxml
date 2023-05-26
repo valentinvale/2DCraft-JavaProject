@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import java.net.URL?>
+
+<VBox fx:id="root" alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainMenuController">
+    <Button text="Adauga un jucator" onAction="#handleAddPlayer"/>
+    <Button text="Alege un jucator" onAction="#handleChoosePlayer"/>
+    <Button text="Elimina un jucator" onAction="#handleRemovePlayer"/>
+    <Button text="Salveaza jocul" onAction="#handleSaveGame"/>
+    <Button text="Iesire" onAction="#handleExit"/>
+    <stylesheets>
+        <URL value="@styles/mainstyle.css" />
+    </stylesheets>
+</VBox>
+
+
+
+

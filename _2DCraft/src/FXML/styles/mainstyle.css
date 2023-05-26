@@ -1,0 +1,42 @@
+.root {
+    -fx-background-image: url("../resources/minecraftbackground8x6.png");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-padding: 150px 0 0 0;
+}
+
+.button {
+   /*-fx-font-size: 15px;*/
+    -fx-background-image: url("../resources/mcbutton.png");
+    -fx-background-position: center center;
+    -fx-font-weight: bold;
+    -fx-background-size: 100% 100%;
+}
+
+/*.button:hover {*/
+/*    -fx-shadow-color: #898080;*/
+/*    -fx-shadow-radius: 20;*/
+/*    -fx-shadow-inset: 0 0 10 0;*/
+
+/*}*/
+
+.label {
+    /*-fx-font-size: 10px;*/
+    -fx-font-weight: bold;
+}
+
+/*.vbox {*/
+/*    -fx-alignment: center;*/
+/*    -fx-padding: 0 50; !* Adjust the left and right padding as needed *!*/
+/*}*/
+
+
+.playerButtonsContainer {
+    -fx-alignment: center;
+    -fx-padding: 0 50; /* Adjust the left and right padding as needed */
+    -fx-content-display: center;
+}
+
+.text-field{
+    -fx-pref-width: 100px;
+}

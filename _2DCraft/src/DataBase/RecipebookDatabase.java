@@ -73,4 +73,19 @@ public class RecipebookDatabase {
 
     }
 
+    public void removeRecipebook(int player_id){
+        try{
+            String query = "DELETE FROM recipebook WHERE player_id = ?";
+            var preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, player_id);
+            preparedStatement.executeUpdate();
+
+            AuditService.writeAction("Remove recipebook");
+
+        }
+        catch (Exception e){
+            System.out.println("Error while removing recipebook: " + e.getMessage());
+        }
+    }
+
 }

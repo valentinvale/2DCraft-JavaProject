@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--        System.out.println(MainService.getCurrentPlayer().getName());-->
+<!--        System.out.println("&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;");-->
+<!--        System.out.println("1. Deschide inventarul");-->
+<!--        System.out.println("2. Deschide cartea de retete");-->
+<!--        System.out.println("3. Sparge block-uri");-->
+<!--        System.out.println("0. Iesire");-->
+
+<?import java.net.URL?>
+<VBox fx:id="root" alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PlayerMenuController">
+    <Label fx:id="playerName" />
+    <Button text="Deschide inventarul" onAction="#handleOpenInventory"/>
+    <Button text="Deschide cartea de retete" onAction="#handleOpenRecipeBook"/>
+    <Button text="Sparge block-uri" onAction="#handleBreakBlocks"/>
+    <Button text="Inapoi" onAction="#handleBackButton"/>
+    <stylesheets>
+        <URL value="@styles/mainstyle.css" />
+    </stylesheets>
+</VBox>

@@ -144,6 +144,19 @@ public class Inventory {
 
     }
 
+    public List<Item> getCraftingPanels(){
+        List<Item> craftingPanels = new ArrayList<Item>();
+        craftingPanels.add(this.craftingPanel1);
+        craftingPanels.add(this.craftingPanel2);
+        craftingPanels.add(this.craftingPanel3);
+        craftingPanels.add(this.craftingPanel4);
+        return craftingPanels;
+    }
+
+    public Item getCraftingResult(){
+        return this.craftingResult;
+    }
+
     public void closeInventory(){
         if(this.craftingPanel1 != null)
             this.removeItemFromCraftingPanel(1);
@@ -170,6 +183,10 @@ public class Inventory {
 
     public int getId() {
         return id;
+    }
+
+    public int getCraftingResultAmount() {
+        return craftingResultAmount;
     }
 
     public void equipItem(Item item){

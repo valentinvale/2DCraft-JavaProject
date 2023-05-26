@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<VBox fx:id="root" alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RemoveItemFromCraftingPanelController">
+    <Label text="Alege panel-ul"/>
+    <VBox alignment="CENTER">
+        <HBox fx:id="panelsBox" spacing="5">
+            <Button text="1" onAction="#handleRemoveItemFromCraftingPanel"/>
+            <Button text="2" onAction="#handleRemoveItemFromCraftingPanel"/>
+            <Button text="3" onAction="#handleRemoveItemFromCraftingPanel"/>
+            <Button text="4" onAction="#handleRemoveItemFromCraftingPanel"/>
+        </HBox>
+    </VBox>
+    <Button text="Inapoi" onAction="#handleBackButton"/>
+    <stylesheets>
+        <URL value="@styles/mainstyle.css" />
+    </stylesheets>
+</VBox>
