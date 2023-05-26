@@ -24,7 +24,7 @@ public class Main extends Application {
 
         int numberOfBlocksToGenerate = 5;
         MainService.loadGame();
-        if(MainService.getExistingBlocksList().size() < 5){
+        if(MainService.getExistingBlocksList().size() < numberOfBlocksToGenerate){
             System.out.println("Nr of existing blocks: " + MainService.getExistingBlocksList().size());
             MainService.generateRandomBlocks(numberOfBlocksToGenerate - MainService.getExistingBlocksList().size());
         }

@@ -32,7 +32,7 @@ public class BreakBlocksMenuController {
             Button blockButton = new Button(block.getName());
             blockButton.setOnAction(event -> {
                 MainService.breakBlock(blockList.indexOf(block)); // !!!
-                if(MainService.getExistingBlocksList().size() < 5)
+                if(MainService.getExistingBlocksList().size() < numberOfBlocksToGenerate)
                     MainService.generateOneRandomBlock();
                 reloadScene();
             });
