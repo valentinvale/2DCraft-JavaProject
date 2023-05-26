@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import java.net.URL?>
-<VBox fx:id="root" alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddPlayerController">
+<VBox fx:id="root" alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddPlayerController" fillWidth="false">
     <Label text="Numele jucatorului"/>
     <TextField fx:id="playerName" prefWidth="100"/>
     <Button text="Adauga jucatorul" onAction="#handleAddPlayer"/>

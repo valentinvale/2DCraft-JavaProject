@@ -11,7 +11,7 @@
     <Label text="Alege item-ul"/>
     <ChoiceBox fx:id="itemChoiceBox" prefWidth="150"/>
     <VBox alignment="CENTER">
-        <HBox fx:id="panelsBox" spacing="5">
+        <HBox fx:id="panelsBox" spacing="5" alignment="CENTER">
             <Button text="1" onAction="#handleAddItemToCraftingPanel"/>
             <Button text="2" onAction="#handleAddItemToCraftingPanel"/>
             <Button text="3" onAction="#handleAddItemToCraftingPanel"/>
