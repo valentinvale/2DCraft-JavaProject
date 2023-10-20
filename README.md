@@ -1,5 +1,5 @@
 # 2DCraft-JavaProject
-  OOP Java project similar to Minecraft. The game currently lets you break blocks and use them for crafting and other actions. At this moment, the game runs in the terminal. Graphic interface to be implemented.
+  OOP Java project similar to Minecraft. The game currently lets you break blocks and use them for crafting and other actions. The game uses a JavaFX Graphics Interface.
 ## Actions/Queries
   Some actions/queries that are available from the service class:
   * Add New Player
